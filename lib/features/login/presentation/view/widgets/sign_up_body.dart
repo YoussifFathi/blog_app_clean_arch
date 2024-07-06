@@ -1,12 +1,10 @@
-import 'package:blog_app_clean_arch/core/theme/color_pallete.dart';
 import 'package:blog_app_clean_arch/core/utils/validator_handler.dart';
 import 'package:blog_app_clean_arch/core/widgets/custom_main_button.dart';
 import 'package:blog_app_clean_arch/core/widgets/password_text_field.dart';
 import 'package:blog_app_clean_arch/core/widgets/primary_text_field.dart';
 import 'package:blog_app_clean_arch/features/login/presentation/controller/login_cubit.dart';
 import 'package:blog_app_clean_arch/features/login/presentation/view/widgets/does_not_account_row.dart';
-import 'package:blog_app_clean_arch/features/sign_up/presentation/controller/sign_up_cubit.dart';
-import 'package:blog_app_clean_arch/features/sign_up/presentation/view/widgets/have_account_row.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -55,7 +53,6 @@ class LoginBody extends StatelessWidget {
                 CustomMainButton(
                     onPress: () {
                       if(loginCubit.formKey.currentState!.validate()){
-                        print("Login");
                       }
                     },
                     buttonTxt: "Login"),

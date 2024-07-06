@@ -1,4 +1,3 @@
-import 'package:blog_app_clean_arch/core/theme/color_pallete.dart';
 import 'package:blog_app_clean_arch/core/utils/validator_handler.dart';
 import 'package:blog_app_clean_arch/core/widgets/custom_main_button.dart';
 import 'package:blog_app_clean_arch/core/widgets/password_text_field.dart';
@@ -63,7 +62,6 @@ class SignUpBody extends StatelessWidget {
                 CustomMainButton(
                     onPress: () {
                       if(signUpCubit.formKey.currentState!.validate()){
-                        print("Sign up");
                       }
                     },
                     buttonTxt: "Sign Up"),
