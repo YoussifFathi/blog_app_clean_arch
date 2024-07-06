@@ -1,4 +1,3 @@
-import 'package:blog_app_clean_arch/core/theme/color_pallete.dart';
 import 'package:blog_app_clean_arch/core/utils/validator_handler.dart';
 import 'package:blog_app_clean_arch/core/widgets/custom_main_button.dart';
 import 'package:blog_app_clean_arch/core/widgets/password_text_field.dart';
@@ -14,7 +13,9 @@ class SignUpBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final signUpCubit = BlocProvider.of<SignUpCubit>(context);
-    return Form(
+    return BlocBuilder<SignUpCubit, SignUpState>(
+  builder: (context, state) {
+    return state is SignUpLoading ? const Center(child: CircularProgressIndicator(),) : Form(
       key: signUpCubit.formKey,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -63,7 +64,7 @@ class SignUpBody extends StatelessWidget {
                 CustomMainButton(
                     onPress: () {
                       if(signUpCubit.formKey.currentState!.validate()){
-                        print("Sign up");
+                        signUpCubit.signUp();
                       }
                     },
                     buttonTxt: "Sign Up"),
@@ -77,6 +78,8 @@ class SignUpBody extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }
 

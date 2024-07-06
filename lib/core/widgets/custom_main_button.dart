@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:blog_app_clean_arch/core/theme/color_pallete.dart';
 import 'package:flutter/material.dart';
