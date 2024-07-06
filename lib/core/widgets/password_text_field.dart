@@ -22,10 +22,12 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
     return  TextFormField(
       validator: widget.validator,
        controller: widget.textEditingController,
+       obscureText: isObscureText,
        decoration: InputDecoration(
          contentPadding: const EdgeInsets.symmetric(horizontal: 24,vertical: 20),
          hintText: widget.hintTxt,
          prefixIcon:  Icon(widget.prefixIconData),
+
          suffixIcon:  GestureDetector(
            onTap: () {
              isObscureText = !isObscureText;
