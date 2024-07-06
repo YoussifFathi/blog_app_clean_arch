@@ -6,8 +6,7 @@ import 'package:blog_app_clean_arch/features/sign_up/domain/repos/sign_up_repo.d
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+
 
 class SignUpRepoIMP implements SignUpRepo {
 
@@ -28,7 +27,6 @@ class SignUpRepoIMP implements SignUpRepo {
       }
       throw (UnsupportedError);
     } catch (e) {
-      print("Error from Sign up Repo IMP: ${e.toString()}");
       return left(Failure(message: e.toString()));
     }
   }

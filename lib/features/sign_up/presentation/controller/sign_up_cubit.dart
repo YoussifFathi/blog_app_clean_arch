@@ -25,7 +25,6 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
     final response = await _signUpUseCase.execute(signUpRequestModel);
     response.fold((l) {
-      print(l.message);
       emit(SignUpFailure(l.message));
     }, (r) {
       emit(SignUpSuccess());

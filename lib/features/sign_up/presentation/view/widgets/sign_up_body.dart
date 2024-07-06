@@ -1,4 +1,5 @@
 import 'package:blog_app_clean_arch/core/utils/validator_handler.dart';
+import 'package:blog_app_clean_arch/core/widgets/custom_failure_dialog.dart';
 import 'package:blog_app_clean_arch/core/widgets/custom_main_button.dart';
 import 'package:blog_app_clean_arch/core/widgets/password_text_field.dart';
 import 'package:blog_app_clean_arch/core/widgets/primary_text_field.dart';
@@ -13,7 +14,12 @@ class SignUpBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final signUpCubit = BlocProvider.of<SignUpCubit>(context);
-    return BlocBuilder<SignUpCubit, SignUpState>(
+    return BlocConsumer<SignUpCubit, SignUpState>(
+  listener: (context, state) {
+    if(state is SignUpFailure){
+      showDialog(context: context, builder: (context) =>  CustomFailureDialog(title: "Sign up Failed", description: state.message),);
+
+    }  },
   builder: (context, state) {
     return state is SignUpLoading ? const Center(child: CircularProgressIndicator(),) : Form(
       key: signUpCubit.formKey,
@@ -78,6 +84,7 @@ class SignUpBody extends StatelessWidget {
         ),
       ),
     );
+
   },
 );
   }

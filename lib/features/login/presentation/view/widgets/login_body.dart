@@ -1,5 +1,7 @@
 import 'package:blog_app_clean_arch/core/utils/validator_handler.dart';
+import 'package:blog_app_clean_arch/core/widgets/custom_failure_dialog.dart';
 import 'package:blog_app_clean_arch/core/widgets/custom_main_button.dart';
+import 'package:blog_app_clean_arch/core/widgets/custom_success_dialog.dart';
 import 'package:blog_app_clean_arch/core/widgets/password_text_field.dart';
 import 'package:blog_app_clean_arch/core/widgets/primary_text_field.dart';
 import 'package:blog_app_clean_arch/features/login/presentation/controller/login_cubit.dart';
@@ -14,7 +16,15 @@ class LoginBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginCubit = BlocProvider.of<LoginCubit>(context);
-    return Form(
+    return BlocConsumer<LoginCubit, LoginState>(
+  listener: (context, state) {
+    if(state is LoginFailure){
+      showDialog(context: context, builder: (context) =>  CustomFailureDialog(title: "Login Failed", description: state.message),);
+
+    }
+  },
+  builder: (context, state) {
+    return state is LoginLoading ? const Center(child: CircularProgressIndicator()) :  Form(
       key: loginCubit.formKey,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -53,6 +63,7 @@ class LoginBody extends StatelessWidget {
                 CustomMainButton(
                     onPress: () {
                       if(loginCubit.formKey.currentState!.validate()){
+                        loginCubit.login();
                       }
                     },
                     buttonTxt: "Login"),
@@ -66,6 +77,8 @@ class LoginBody extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }
 
