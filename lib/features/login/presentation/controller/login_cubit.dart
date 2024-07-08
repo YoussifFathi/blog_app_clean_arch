@@ -1,7 +1,10 @@
+import 'package:blog_app_clean_arch/core/generic_controllers/auth_controller.dart';
+import 'package:blog_app_clean_arch/core/navigation/navigation.dart';
 import 'package:blog_app_clean_arch/features/login/data/models/login_request_model.dart';
 import 'package:blog_app_clean_arch/features/login/domain/use_cases/login_use_case.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 part 'login_state.dart';
 
@@ -21,8 +24,8 @@ class LoginCubit extends Cubit<LoginState> {
     response.fold((l) {
       emit(LoginFailure(l.message));
     }, (r){
+      AuthController.authController.setUserAfterLogin(r.userEntity);
       emit(LoginSuccessfully());
-
     });
   }
 

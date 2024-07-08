@@ -1,3 +1,4 @@
+import 'package:blog_app_clean_arch/core/navigation/navigation.dart';
 import 'package:blog_app_clean_arch/core/utils/validator_handler.dart';
 import 'package:blog_app_clean_arch/core/widgets/custom_failure_dialog.dart';
 import 'package:blog_app_clean_arch/core/widgets/custom_main_button.dart';
@@ -9,6 +10,7 @@ import 'package:blog_app_clean_arch/features/login/presentation/view/widgets/doe
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginBody extends StatelessWidget {
   const LoginBody({super.key});
@@ -20,7 +22,9 @@ class LoginBody extends StatelessWidget {
   listener: (context, state) {
     if(state is LoginFailure){
       showDialog(context: context, builder: (context) =>  CustomFailureDialog(title: "Login Failed", description: state.message),);
-
+    }
+    if(state is LoginSuccessfully){
+      GoRouter.of(context).goNamed(Navigation.homeView);
     }
   },
   builder: (context, state) {

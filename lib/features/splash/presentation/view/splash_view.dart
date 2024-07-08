@@ -1,3 +1,4 @@
+import 'package:blog_app_clean_arch/core/generic_controllers/auth_controller.dart';
 import 'package:blog_app_clean_arch/core/navigation/navigation.dart';
 import 'package:blog_app_clean_arch/features/splash/presentation/view/widgets/splash_body.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,15 @@ class _SplashViewState extends State<SplashView> {
   }
 
   void navToSignUp() async {
-    Future.delayed(const Duration(seconds: 3)).then((value) {
-      GoRouter.of(context).goNamed(Navigation.signUpView);
+    Future.delayed(const Duration(seconds: 3)).then((value)async {
+      await AuthController.authController.checkUserLoggedIn();
+      if( AuthController.authController.isUserLoggedIn){
+        GoRouter.of(context).goNamed(Navigation.homeView);
+
+      }else{
+        GoRouter.of(context).goNamed(Navigation.signUpView);
+
+      }
     });
   }
 
