@@ -21,6 +21,13 @@ jobs:
         with:
           java-version: 11
 
+      - name: Install Ruby  # Place here
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2.3"
+          bundler-cache: true
+          working-directory: android
+
       - name: install flutter
         uses: subosito/flutter-action@v2
         with:
