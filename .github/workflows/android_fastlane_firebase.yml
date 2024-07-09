@@ -21,6 +21,18 @@ jobs:
         with:
           java-version: 11
 
+      - name: install flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: install ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2.3"
+          bundler-cache: true
+          working-directory: android
+
       - name: Install Fastlane
         run: sudo gem install fastlane
 
