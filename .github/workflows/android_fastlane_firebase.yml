@@ -26,11 +26,11 @@ jobs:
         with:
           channel: stable
 
-      - name: Install Fastlane Dependencies
-        run: sudo apt-get install -y ruby-full build-essential zlib1g-dev
-
       - name: Install Fastlane
         run: sudo gem install fastlane
+
+      - name: Install Fastlane Plugin (firebase_app_distribution)
+        run: fastlane add_plugin fastlane-plugin-firebase_app_distribution
 
       - name: Deploy to Firebase App Distribution
         working-directory: android
