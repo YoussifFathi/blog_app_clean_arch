@@ -21,9 +21,6 @@ jobs:
         with:
           java-version: 11
 
-      - name: Build with Gradle
-        run: ./gradlew build
-
       - name: Install Fastlane
         run: sudo gem install fastlane
 
