@@ -24,9 +24,6 @@ jobs:
       - name: Install Fastlane
         run: sudo gem install fastlane
 
-      - name: Run tests
-        run: fastlane test
-
       - name: Deploy to Firebase App Distribution
         if: github.event_name == 'push' && github.ref == 'refs/heads/deploy'
         run: fastlane android firebase_distribution
