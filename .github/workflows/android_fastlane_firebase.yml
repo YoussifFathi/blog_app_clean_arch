@@ -30,6 +30,7 @@ jobs:
         run: sudo gem install fastlane
 
       - name: Deploy to Firebase App Distribution
+        working-directory: android
         env:
           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
         if: github.event_name == 'push' && github.ref == 'refs/heads/deploy'
